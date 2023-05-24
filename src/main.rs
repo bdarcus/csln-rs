@@ -1,0 +1,36 @@
+use std::env;
+use std::fs;
+
+#[macro_use]
+extern crate serde_derive;
+extern crate serde_json;
+
+mod bibliography;
+use bibliography::InputBibliography as Bib;
+
+mod style;
+use style::Style;
+
+fn main() {
+    // Get the command line arguments.
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 3 {
+        panic!("Please provide style path and bibliography path as command line arguments.");
+    }
+    let style_path = &args[1];
+    let bib_path = &args[2];
+
+    // Parse the style file.
+    let style_json = fs::read_to_string(style_path)
+        .expect("Unable to read style file");
+    let style: Style = serde_json::from_str(&style_json).unwrap();
+
+    // Parse the bibliography file.
+    let bib_json = fs::read_to_string(bib_path)
+        .expect("Unable to read bibliography file");
+    let bib: Bib = serde_json::from_str(&bib_json).unwrap();
+
+    // Do something with the style and bibliography data.
+    println!("The name of the style is: {}", serde_json::to_string(&style.title).unwrap());
+    println!("The number of entries in the bibliography is: {}", bib.len());
+}
