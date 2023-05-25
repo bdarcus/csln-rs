@@ -6,9 +6,11 @@ extern crate serde_derive;
 extern crate serde_json;
 extern crate serde_yaml;
 
+#[allow(unused_imports)]
 mod bibliography;
 use bibliography::InputBibliography as Bib;
 
+#[allow(unused_imports)]
 mod style;
 use style::Style;
 
