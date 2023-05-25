@@ -8,7 +8,7 @@ This is a demo repo of how code generation from the typescript models might work
 Here's all that binary will do, but it demonstrates the deserialization and serialization of JSON or YAML `Style` or `InputBibliography` input files.
 
 ```console
-❯ time target/debug/csln-rs style.csl.yaml bibliography.yaml
+❯ time csln-rs style.csl.yaml bibliography.yaml
 The name of the style is: "APA"
 The number of entries in the bibliography is: 5
 
