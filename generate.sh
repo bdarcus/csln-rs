@@ -22,4 +22,4 @@ cargo build
 echo ""
 echo "Running rust binary ..."
 echo ""
-target/debug/csln-rs
+target/debug/csln-rs ${TSRCDIR}/examples/style.csl.yaml ${TSRCDIR}/examples/bibliography.yaml

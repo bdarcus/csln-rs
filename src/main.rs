@@ -4,6 +4,7 @@ use std::fs;
 #[macro_use]
 extern crate serde_derive;
 extern crate serde_json;
+extern crate serde_yaml;
 
 mod bibliography;
 use bibliography::InputBibliography as Bib;
@@ -23,12 +24,24 @@ fn main() {
     // Parse the style file.
     let style_json = fs::read_to_string(style_path)
         .expect("Unable to read style file");
-    let style: Style = serde_json::from_str(&style_json).unwrap();
+    let style: Style = if style_path.ends_with(".json") {
+        serde_json::from_str(&style_json).unwrap()
+    } else if style_path.ends_with(".yaml") || style_path.ends_with(".yml") {
+        serde_yaml::from_str(&style_json).unwrap()
+    } else {
+        panic!("Unsupported file format for style file.");
+    };
 
     // Parse the bibliography file.
     let bib_json = fs::read_to_string(bib_path)
         .expect("Unable to read bibliography file");
-    let bib: Bib = serde_json::from_str(&bib_json).unwrap();
+    let bib: Bib = if bib_path.ends_with(".json") {
+        serde_json::from_str(&bib_json).unwrap()
+    } else if bib_path.ends_with(".yaml") || bib_path.ends_with(".yml") {
+        serde_yaml::from_str(&bib_json).unwrap()
+    } else {
+        panic!("Unsupported file format for bibliography file.");
+    };
 
     // Do something with the style and bibliography data.
     println!("The name of the style is: {}", serde_json::to_string(&style.title).unwrap());
