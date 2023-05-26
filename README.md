@@ -17,3 +17,5 @@ Executed in    2.74 millis    fish           external
    usr time    1.16 millis  406.00 micros    0.75 millis
    sys time    1.62 millis  115.00 micros    1.51 millis
 ```
+
+Do note the [limitations issue](https://github.com/bdarcus/csln-rs/issues/2) for caveats.
