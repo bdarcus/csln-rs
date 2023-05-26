@@ -9,7 +9,7 @@ echo "Generating rust files ..."
 echo ""
 deno task schemas
 quicktype -s schema -l rs --density dense --visibility public schemas/csl-style-schema.json -t Style -o ../csln-rs/src/style.rs
-quicktype -s schema -l rs --density dense --visibility public schemas/csl-inputbibliography-schema.json -t InputBibliography -o ../csln-rs/src/bibliography.rs
+quicktype -s schema -l rs --density dense --visibility public schemas/csl-inputbibliography-schema.json -t InputReference -o ../csln-rs/src/bibliography/reference.rs
 quicktype -s schema -l rs --density dense --visibility public schemas/csl-citation-schema.json -t Citation -o ../csln-rs/src/citation.rs
 
 cd ../csln-rs || exit
