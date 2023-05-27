@@ -7,10 +7,10 @@ cd ${TSRCDIR} || exit
 
 echo "Generating rust files ..."
 echo ""
-deno task schemas
-quicktype -s schema -l rs --density dense --visibility public schemas/csl-style-schema.json -t Style -o ../csln-rs/src/style.rs
-quicktype -s schema -l rs --density dense --visibility public schemas/csl-inputbibliography-schema.json -t InputReference -o ../csln-rs/src/bibliography/reference.rs
-quicktype -s schema -l rs --density dense --visibility public schemas/csl-citation-schema.json -t Citation -o ../csln-rs/src/citation.rs
+deno task npm
+quicktype -s typescript -l rs --density dense --visibility public npm/src/style/options.ts -t OptionGroup -o ../csln-rs/generated/style/options.rs
+quicktype -s typescript -l rs --density dense --visibility public npm/src/style/template.ts -t OptionGroup -o ../csln-rs/generated/style/template.rs
+quicktype -s typescript -l rs --density dense --visibility public npm/src/reference.ts -t InputReference -o ../csln-rs/generated/bibliography/reference.rs
 
 cd ../csln-rs || exit
 
