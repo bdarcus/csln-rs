@@ -18,4 +18,6 @@ Executed in    2.74 millis    fish           external
    sys time    1.62 millis  115.00 micros    1.51 millis
 ```
 
-Do note the [limitations issue](https://github.com/bdarcus/csln-rs/issues/2) for caveats.
+Because of a few [limitations](https://github.com/bdarcus/csln-rs/issues/2), I've decided to commit static source files based on the conversions, but modified in a few places, and output the generated files to a `generated` directory instead.
+
+The `Style` model is fairly big, and even if I'd say it's simplified, it's still fairly complex.
