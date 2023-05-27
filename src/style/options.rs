@@ -13,8 +13,6 @@
 
 use serde::{Serialize, Deserialize};
 
-pub type TemplateKey = String;
-
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LocalizationTerms {
