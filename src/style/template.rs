@@ -4,43 +4,397 @@
 // extern crate serde_derive;
 // extern crate serde_json;
 //
-// use generated_module::Style;
+// use generated_module::LocalizationTerms;
 //
 // fn main() {
 //     let json = r#"{"answer": 42}"#;
-//     let model: Style = serde_json::from_str(&json).unwrap();
+//     let model: LocalizationTerms = serde_json::from_str(&json).unwrap();
 // }
 
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 
-/// A CSL Style.
 #[derive(Serialize, Deserialize)]
-pub struct Style {
-    /// The bibliography specification.
-    pub bibliography: Option<BibliographyStyle>,
-    /// The categories the style belongs to; for purposes of indexing.
-    pub categories: Option<Vec<StyleCategory>>,
-    /// The citation specification.
-    pub citation: Option<CitationStyle>,
-    /// The description of the style.
+#[serde(rename_all = "camelCase")]
+pub struct LocalizationTerms {
     pub description: Option<String>,
-    /// The machine-readable token that uniquely identifies the style.
-    pub id: Option<String>,
-    pub options: Option<OptionGroup>,
-    pub templates: Option<HashMap<String, Option<serde_json::Value>>>,
-    /// The human-readable name of the style.
+    pub locale: Lang,
+    pub punctuation_in_quote: Option<bool>,
+    pub terms: RecordLocalizedTermNameLocalizedTerm,
     pub title: Option<String>,
 }
 
-/// The bibliography specification.
 #[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BibliographyStyle {
-    pub heading: Option<String>,
-    pub list_style: Option<String>,
+#[serde(rename_all = "snake_case")]
+pub enum Lang {
+    #[serde(rename = "af-ZA")]
+    AfZa,
+    Ar,
+    #[serde(rename = "bg-BG")]
+    BgBg,
+    #[serde(rename = "ca-AD")]
+    CaAd,
+    #[serde(rename = "cs-CZ")]
+    CsCz,
+    #[serde(rename = "da-DK")]
+    DaDk,
+    #[serde(rename = "de-AT")]
+    DeAt,
+    #[serde(rename = "de-CH")]
+    DeCh,
+    #[serde(rename = "de-DE")]
+    DeDe,
+    #[serde(rename = "el-GR")]
+    ElGr,
+    #[serde(rename = "en-GB")]
+    EnGb,
+    #[serde(rename = "en-US")]
+    EnUs,
+    #[serde(rename = "es-ES")]
+    EsEs,
+    #[serde(rename = "et-EE")]
+    EtEe,
+    Eu,
+    #[serde(rename = "fa-IR")]
+    FaIr,
+    #[serde(rename = "fi-FI")]
+    FiFi,
+    #[serde(rename = "fr-CA")]
+    FrCa,
+    #[serde(rename = "fr-FR")]
+    FrFr,
+    #[serde(rename = "he-IL")]
+    HeIl,
+    #[serde(rename = "hr-HR")]
+    HrHr,
+    #[serde(rename = "hu-HU")]
+    HuHu,
+    #[serde(rename = "is-IS")]
+    IsIs,
+    #[serde(rename = "it-IT")]
+    ItIt,
+    #[serde(rename = "ja-JP")]
+    JaJp,
+    #[serde(rename = "km-KH")]
+    KmKh,
+    #[serde(rename = "ko-KR")]
+    KoKr,
+    #[serde(rename = "lt-LT")]
+    LtLt,
+    #[serde(rename = "lv-LV")]
+    LvLv,
+    #[serde(rename = "mn-MN")]
+    MnMn,
+    #[serde(rename = "nb-NO")]
+    NbNo,
+    #[serde(rename = "nl-NL")]
+    NlNl,
+    #[serde(rename = "pl-PL")]
+    PlPl,
+    #[serde(rename = "pt-BR")]
+    PtBr,
+    #[serde(rename = "pt-PT")]
+    PtPt,
+    #[serde(rename = "ro-RO")]
+    RoRo,
+    #[serde(rename = "ru-RU")]
+    RuRu,
+    #[serde(rename = "sk-SK")]
+    SkSk,
+    #[serde(rename = "sl-SI")]
+    SlSi,
+    #[serde(rename = "sr-RS")]
+    SrRs,
+    #[serde(rename = "sv-SE")]
+    SvSe,
+    #[serde(rename = "th-TH")]
+    ThTh,
+    #[serde(rename = "tr-TR")]
+    TrTr,
+    #[serde(rename = "uk-UA")]
+    UkUa,
+    #[serde(rename = "vi-VN")]
+    ViVn,
+    #[serde(rename = "zh-CN")]
+    ZhCn,
+    #[serde(rename = "zh-TW")]
+    ZhTw,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub struct RecordLocalizedTermNameLocalizedTerm {
+    pub accessed: LocalizedTerm,
+    pub act: LocalizedTerm,
+    pub ad: LocalizedTerm,
+    pub advance_online_publication: LocalizedTerm,
+    pub album: LocalizedTerm,
+    pub and: LocalizedTerm,
+    pub and_others: LocalizedTerm,
+    pub anonymous: LocalizedTerm,
+    pub appendix: LocalizedTerm,
+    pub article_locator: LocalizedTerm,
+    pub at: LocalizedTerm,
+    pub audio_recording: LocalizedTerm,
+    pub available_at: LocalizedTerm,
+    pub bc: LocalizedTerm,
+    pub bce: LocalizedTerm,
+    pub book: LocalizedTerm,
+    pub by: LocalizedTerm,
+    pub canon: LocalizedTerm,
+    pub ce: LocalizedTerm,
+    pub chapter: LocalizedTerm,
+    pub circa: LocalizedTerm,
+    pub cited: LocalizedTerm,
+    pub column: LocalizedTerm,
+    pub elocation: LocalizedTerm,
+    pub equation: LocalizedTerm,
+    pub et_al: LocalizedTerm,
+    pub figure: LocalizedTerm,
+    pub film: LocalizedTerm,
+    pub folio: LocalizedTerm,
+    pub forthcoming: LocalizedTerm,
+    pub from: LocalizedTerm,
+    pub henceforth: LocalizedTerm,
+    pub ibid: LocalizedTerm,
+    #[serde(rename = "in")]
+    pub record_localized_term_name_localized_term_in: LocalizedTerm,
+    pub in_press: LocalizedTerm,
+    pub internet: LocalizedTerm,
+    pub interview: LocalizedTerm,
+    pub issue: LocalizedTerm,
+    pub letter: LocalizedTerm,
+    pub line: LocalizedTerm,
+    pub loc_cit: LocalizedTerm,
+    #[serde(rename = "no date")]
+    pub no_date: LocalizedTerm,
+    pub no_place: LocalizedTerm,
+    pub no_publisher: LocalizedTerm,
+    pub note: LocalizedTerm,
+    pub on: LocalizedTerm,
+    pub online: LocalizedTerm,
+    pub op_cit: LocalizedTerm,
+    pub opus: LocalizedTerm,
+    pub original_work_published: LocalizedTerm,
+    pub page: LocalizedTerm,
+    pub paragraph: LocalizedTerm,
+    pub part: LocalizedTerm,
+    pub personal_communication: LocalizedTerm,
+    pub podcast: LocalizedTerm,
+    pub podcast_episode: LocalizedTerm,
+    pub preprint: LocalizedTerm,
+    pub presented_at: LocalizedTerm,
+    pub radio_broadcast: LocalizedTerm,
+    pub radio_series: LocalizedTerm,
+    pub radio_series_episode: LocalizedTerm,
+    pub reference: LocalizedTerm,
+    pub retrieved: LocalizedTerm,
+    pub review_of: LocalizedTerm,
+    pub rule: LocalizedTerm,
+    pub scale: LocalizedTerm,
+    pub scene: LocalizedTerm,
+    pub section: LocalizedTerm,
+    pub special_issue: LocalizedTerm,
+    pub special_section: LocalizedTerm,
+    pub sub_verbo: LocalizedTerm,
+    pub supplement: LocalizedTerm,
+    pub table: LocalizedTerm,
+    pub television_broadcast: LocalizedTerm,
+    pub television_series: LocalizedTerm,
+    pub television_series_episode: LocalizedTerm,
+    pub timestamp: LocalizedTerm,
+    pub title_locator: LocalizedTerm,
+    pub verse: LocalizedTerm,
+    pub version: LocalizedTerm,
+    pub video: LocalizedTerm,
+    pub volume: LocalizedTerm,
+    pub working_paper: LocalizedTerm,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct LocalizedTerm {
+    pub format: Option<LocalizedTermFormat>,
+    pub multiple: Option<String>,
+    pub single: Option<String>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LocalizedTermFormat {
+    Short,
+    Symbol,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum LocalizedTermNameMisc {
+    Accessed,
+    Ad,
+    #[serde(rename = "advance-online-publication")]
+    AdvanceOnlinePublication,
+    Album,
+    And,
+    #[serde(rename = "and-others")]
+    AndOthers,
+    Anonymous,
+    At,
+    #[serde(rename = "audio-recording")]
+    AudioRecording,
+    #[serde(rename = "available-at")]
+    AvailableAt,
+    Bc,
+    Bce,
+    By,
+    Ce,
+    Circa,
+    Cited,
+    #[serde(rename = "et-al")]
+    EtAl,
+    Film,
+    Forthcoming,
+    From,
+    Henceforth,
+    Ibid,
+    In,
+    #[serde(rename = "in-press")]
+    InPress,
+    Internet,
+    Interview,
+    Letter,
+    #[serde(rename = "loc-cit")]
+    LocCit,
+    #[serde(rename = "no date")]
+    NoDate,
+    #[serde(rename = "no-place")]
+    NoPlace,
+    #[serde(rename = "no-publisher")]
+    NoPublisher,
+    On,
+    Online,
+    #[serde(rename = "op-cit")]
+    OpCit,
+    #[serde(rename = "original-work-published")]
+    OriginalWorkPublished,
+    #[serde(rename = "personal-communication")]
+    PersonalCommunication,
+    Podcast,
+    #[serde(rename = "podcast-episode")]
+    PodcastEpisode,
+    Preprint,
+    #[serde(rename = "presented-at")]
+    PresentedAt,
+    #[serde(rename = "radio-broadcast")]
+    RadioBroadcast,
+    #[serde(rename = "radio-series")]
+    RadioSeries,
+    #[serde(rename = "radio-series-episode")]
+    RadioSeriesEpisode,
+    Reference,
+    Retrieved,
+    #[serde(rename = "review-of")]
+    ReviewOf,
+    Scale,
+    #[serde(rename = "special-issue")]
+    SpecialIssue,
+    #[serde(rename = "special-section")]
+    SpecialSection,
+    #[serde(rename = "television-broadcast")]
+    TelevisionBroadcast,
+    #[serde(rename = "television-series")]
+    TelevisionSeries,
+    #[serde(rename = "television-series-episode")]
+    TelevisionSeriesEpisode,
+    Video,
+    #[serde(rename = "working-paper")]
+    WorkingPaper,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum LocalizedTermNameLocator {
+    Act,
+    Appendix,
+    #[serde(rename = "article-locator")]
+    ArticleLocator,
+    Book,
+    Canon,
+    Chapter,
+    Column,
+    Elocation,
+    Equation,
+    Figure,
+    Folio,
+    Line,
+    Note,
+    Opus,
+    Paragraph,
+    Rule,
+    Scene,
+    #[serde(rename = "sub-verbo")]
+    SubVerbo,
+    Table,
+    Timestamp,
+    #[serde(rename = "title-locator")]
+    TitleLocator,
+    Verse,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LocalizedTermNameLocatorNumber {
+    Issue,
+    Page,
+    Part,
+    Section,
+    Supplement,
+    Version,
+    Volume,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct StandaloneLocalize {
+    pub description: Option<String>,
+    pub format: Option<LocalizedTermFormat>,
+    pub multiple: Option<String>,
+    pub rights: Option<String>,
+    pub single: Option<String>,
+    pub translators: Option<Vec<String>>,
+}
+
+/// Option model for style configuration.
+#[derive(Serialize, Deserialize)]
+pub struct OptionsFile {
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct SortRules {
+    pub key: GroupSortKeys,
+    /// The order to sort the list.
+    pub order: Order,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum GroupSortKeys {
+    #[serde(rename = "as-cited")]
+    AsCited,
+    Author,
+    Title,
+    Year,
+}
+
+/// The order to sort the list.
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Order {
+    Ascending,
+    Descending,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Options {
+    /// Parameter groups.
     pub options: Option<OptionGroup>,
-    pub template: Option<Vec<TemplateComponent>>,
 }
 
 /// Parameter groups.
@@ -380,15 +734,15 @@ pub enum DelimiterPrecedes {
 /// Date formatting configuration.
 #[derive(Serialize, Deserialize)]
 pub struct DateFormatting {
-    pub date: Option<EStyle>,
+    pub date: Option<TimeStyle>,
     pub month: Option<MonthStyle>,
-    pub time: Option<EStyle>,
+    pub time: Option<TimeStyle>,
     pub year: Option<YearStyle>,
 }
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
-pub enum EStyle {
+pub enum TimeStyle {
     Full,
     Long,
     Medium,
@@ -437,16 +791,6 @@ pub enum AddNames {
     PrimaryWithInitials,
 }
 
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "kebab-case")]
-pub enum GroupSortKeys {
-    #[serde(rename = "as-cited")]
-    AsCited,
-    Author,
-    Title,
-    Year,
-}
-
 /// Localization configuration.
 ///
 /// Terms and data localization configuration.
@@ -474,15 +818,8 @@ pub enum Scope {
 /// Reference sorting configuration.
 #[derive(Serialize, Deserialize)]
 pub struct SortConfig {
-    pub key: Option<GroupSortKeys>,
-    pub order: Option<Order>,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub enum Order {
-    Ascending,
-    Descending,
+    pub key: GroupSortKeys,
+    pub order: Order,
 }
 
 /// Substitution configuration.
@@ -493,7 +830,7 @@ pub struct Substitution {
     /// When author is nil, substitute the first non-nil listed variable.
     /// Once a substitution is made, the substituted variable shall be set to nil for purposes of
     /// later rendering.
-    pub author: Option<Vec<Substitute>>,
+    pub author: Vec<Substitute>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -504,18 +841,41 @@ pub enum Substitute {
     Translator,
 }
 
-/// A template defined inline.
-///
-/// A template is called by name.
+#[derive(Serialize, Deserialize)]
+pub struct SortGroup {
+    pub key: GroupSortKeys,
+}
+
+/// Reference grouping of configuration.
+#[derive(Serialize, Deserialize)]
+pub struct Group {
+    /// The string with which to join two or more rendering comnponents.
+    pub delimiter: Option<String>,
+    pub key: GroupSortKeys,
+}
+
+pub type NamedTemplate = HashMap<String, Template>;
+
+/// The bibliography specification.
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BibliographyStyle {
+    pub heading: Option<String>,
+    pub list_style: Option<String>,
+    /// Parameter groups.
+    pub options: Option<OptionGroup>,
+    pub template: Vec<TemplateComponent>,
+}
+
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Condition {
-    /// The conditions that must be true for the templates to render.
-    #[serde(rename = "match")]
-    pub condition_match: Option<Match>,
-    pub template: Option<Vec<TemplateComponent>>,
     /// Is the item variable a number?
     pub is_number: Option<Locators>,
+    /// The conditions that must be true for the templates to render.
+    #[serde(rename = "match")]
+    pub condition_match: MatchEnum,
+    pub template: Option<Vec<TemplateComponent>>,
     /// Does the date conform to EDTF?
     #[serde(rename = "isEDTFDate")]
     pub is_edtf_date: Option<Dates>,
@@ -525,7 +885,6 @@ pub struct Condition {
     pub has_variable: Option<Vec<Variables>>,
     /// The item reference locale; to allow multilingual output.
     pub locale: Option<String>,
-    pub template_key: Option<String>,
 }
 
 /// When all of the when conditions are nil, format the children.
@@ -567,6 +926,7 @@ pub struct Template {
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TemplateComponent {
+    /// Parameter groups.
     pub options: Option<OptionGroup>,
     pub template: Option<Vec<TemplateComponent>>,
     pub template_key: Option<String>,
@@ -579,7 +939,7 @@ pub struct TemplateComponent {
     pub contributor: Option<ContributorRoles>,
     pub locator: Option<Locators>,
     pub date: Option<Dates>,
-    pub format: Option<Format>,
+    pub format: Option<TemplateComponentFormat>,
     pub title: Option<Titles>,
     pub text: Option<String>,
     pub term: Option<LocalizedTermName>,
@@ -593,7 +953,7 @@ pub struct TemplateComponent {
 /// The conditions that must be true for the templates to render.
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
-pub enum Match {
+pub enum MatchEnum {
     All,
     Any,
     None,
@@ -644,7 +1004,7 @@ pub enum ReferenceTypes {
 
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "kebab-case")]
-pub enum Format {
+pub enum TemplateComponentFormat {
     Full,
     Main,
     #[serde(rename = "month-day")]
@@ -809,9 +1169,10 @@ pub struct CitationStyle {
     /// Non-integral citations are those where the author is incorporated in the citation, and
     /// not printed inline in the text.
     pub non_integral: Option<RenderList>,
+    /// Parameter groups.
     pub options: Option<OptionGroup>,
     pub placement: Option<Placement>,
-    pub template: Option<Vec<TemplateComponent>>,
+    pub template: Vec<TemplateComponent>,
 }
 
 /// Integral citations are those where the author is printed inline in the text; aka "in
@@ -821,8 +1182,9 @@ pub struct CitationStyle {
 /// not printed inline in the text.
 #[derive(Serialize, Deserialize)]
 pub struct RenderList {
+    /// Parameter groups.
     pub options: Option<OptionGroup>,
-    pub template: Option<Vec<TemplateComponent>>,
+    pub template: Vec<TemplateComponent>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -830,4 +1192,270 @@ pub struct RenderList {
 pub enum Placement {
     Inline,
     Note,
+}
+
+/// A CSL Style.
+#[derive(Serialize, Deserialize)]
+pub struct Style {
+    /// The bibliography specification.
+    pub bibliography: Option<BibliographyStyle>,
+    /// The categories the style belongs to; for purposes of indexing.
+    pub categories: Option<Vec<StyleCategory>>,
+    /// The citation specification.
+    pub citation: Option<CitationStyle>,
+    /// The description of the style.
+    pub description: Option<String>,
+    /// The machine-readable token that uniquely identifies the style.
+    pub id: Option<String>,
+    /// Parameter groups.
+    pub options: Option<OptionGroup>,
+    pub templates: NamedTemplate,
+    /// The human-readable name of the style.
+    pub title: Option<String>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct StyleMetadata {
+    /// The categories the style belongs to; for purposes of indexing.
+    pub categories: Option<Vec<StyleCategory>>,
+    /// The description of the style.
+    pub description: Option<String>,
+    /// The machine-readable token that uniquely identifies the style.
+    pub id: Option<String>,
+    /// The human-readable name of the style.
+    pub title: Option<String>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct HasFormatting {
+    pub bold: Option<bool>,
+    pub emph: Option<bool>,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum DelimiterPunctuation {
+    Colon,
+    Comma,
+    Period,
+    Semicolon,
+    Space,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct MatchWhich {
+    /// The conditions that must be true for the templates to render.
+    #[serde(rename = "match")]
+    pub match_which_match: MatchEnum,
+}
+
+/// Template property definition in the Style.
+#[derive(Serialize, Deserialize)]
+pub struct TopLevelTemplate {
+    pub templates: NamedTemplate,
+}
+
+/// A standlone template file.
+#[derive(Serialize, Deserialize)]
+pub struct TemplateFile {
+    pub description: Option<String>,
+    pub templates: NamedTemplate,
+    pub title: Option<String>,
+}
+
+/// A template is called by name.
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CalledTemplate {
+    pub template_key: String,
+}
+
+/// A template defined inline.
+#[derive(Serialize, Deserialize)]
+pub struct InlineTemplate {
+    pub template: Vec<TemplateComponent>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Cond {
+    /// When all of the when conditions are nil, format the children.
+    #[serde(rename = "else")]
+    pub cond_else: Option<Template>,
+    /// For the first condition that is non-nil, format the children.
+    pub when: Option<Vec<Condition>>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum Match {
+    AnythingArray(Vec<Option<serde_json::Value>>),
+    Bool(bool),
+    Double(f64),
+    MatchClass(MatchClass),
+    String(String),
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct MatchClass {
+    /// The conditions that must be true for the templates to render.
+    #[serde(rename = "match")]
+    pub match_match: MatchEnum,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct IsNumber {
+    /// Is the item variable a number?
+    pub is_number: Locators,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct IsEdtfDate {
+    /// Does the date conform to EDTF?
+    #[serde(rename = "isEDTFDate")]
+    pub is_edtf_date: Dates,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct IsRefType {
+    /// Is the item reference type among the listed reference types?
+    pub is_ref_type: Vec<ReferenceTypes>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct HasVariable {
+    /// Does the item reference include one of the listed variables?
+    pub has_variable: Vec<Variables>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DataMatch {
+    /// Is the item variable a number?
+    pub is_number: Option<Locators>,
+    /// Does the date conform to EDTF?
+    #[serde(rename = "isEDTFDate")]
+    pub is_edtf_date: Option<Dates>,
+    /// Is the item reference type among the listed reference types?
+    pub is_ref_type: Option<Vec<ReferenceTypes>>,
+    /// Does the item reference include one of the listed variables?
+    pub has_variable: Option<Vec<Variables>>,
+    /// The item reference locale; to allow multilingual output.
+    pub locale: Option<String>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Locale {
+    /// The item reference locale; to allow multilingual output.
+    pub locale: String,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RenderListBlock {
+    pub list_style: Option<String>,
+    /// Parameter groups.
+    pub options: Option<OptionGroup>,
+    pub template: Vec<TemplateComponent>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct RenderSimple {
+    pub bold: Option<bool>,
+    pub emph: Option<bool>,
+    pub variable: SimpleTypes,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+/// Non-localized plain text.
+#[derive(Serialize, Deserialize)]
+pub struct RenderText {
+    pub bold: Option<bool>,
+    pub emph: Option<bool>,
+    pub text: String,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+/// Localized strings.
+#[derive(Serialize, Deserialize)]
+pub struct RenderTerm {
+    pub bold: Option<bool>,
+    pub emph: Option<bool>,
+    pub format: LocalizedTermFormat,
+    pub term: LocalizedTermName,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+/// A template component for rendering dates.
+#[derive(Serialize, Deserialize)]
+pub struct RenderDate {
+    pub bold: Option<bool>,
+    pub date: Dates,
+    pub emph: Option<bool>,
+    pub format: DateFormat,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum DateFormat {
+    Full,
+    #[serde(rename = "month-day")]
+    MonthDay,
+    Year,
+    #[serde(rename = "year-month")]
+    YearMonth,
+}
+
+/// A template component for rendering title.
+#[derive(Serialize, Deserialize)]
+pub struct RenderTitle {
+    pub bold: Option<bool>,
+    pub emph: Option<bool>,
+    pub format: Option<RenderTitleFormat>,
+    pub title: Titles,
+    /// The symbol pair to wrap around one or more rendering components.
+    /// Interaction with surrounding punctuation is localized.
+    pub wrap: Option<WrapPunctuation>,
+}
+
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RenderTitleFormat {
+    Full,
+    Main,
+    Short,
+    Sub,
+}
+
+/// A template component for rendering contributors.
+#[derive(Serialize, Deserialize)]
+pub struct RenderContributors {
+    pub contributor: ContributorRoles,
+    /// Parameter groups.
+    pub options: Option<OptionGroup>,
+    pub template: Vec<TemplateComponent>,
+}
+
+/// A template component for rendering locators.
+#[derive(Serialize, Deserialize)]
+pub struct RenderLocators {
+    pub locator: Locators,
+    /// Parameter groups.
+    pub options: Option<OptionGroup>,
+    pub template: Vec<TemplateComponent>,
 }
