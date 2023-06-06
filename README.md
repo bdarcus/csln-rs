@@ -1,3 +1,5 @@
+I'm archiving this, in favor of a pure Rust implementation, from which the JSON schemas are generated.
+
 # A demo of CSL-next codegen using quicktype
 
 This is a demo repo of how code generation from the typescript models might work. It consists of:
