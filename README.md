@@ -1,4 +1,4 @@
-I'm archiving this, in favor of a pure Rust implementation, from which the JSON schemas are generated.
+I'm archiving this, in favor of a [pure Rust implementation](https://github.com/bdarcus/csln), from which the JSON schemas are generated.
 
 # A demo of CSL-next codegen using quicktype
 
